@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Instagram Laptop Layout</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: #000;
+      color: white;
+      display: flex;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1400px;
+      display: flex;
+      gap: 30px;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      width: 250px;
+      height: 95vh;
+      border-right: 1px solid #222;
+      padding: 30px 20px;
+      position: sticky;
+      top: 10px;
+    }
+
+    .logo {
+      font-size: 32px;
+      font-weight: bold;
+      margin-bottom: 50px;
+    }
+
+    .menu {
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+
+    .menu a {
+      text-decoration: none;
+      color: white;
+      font-size: 20px;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      transition: 0.3s;
+    }
+
+    .menu a:hover {
+      transform: scale(1.05);
+    }
+
+    /* Main Feed */
+    .feed {
+      flex: 1;
+      max-width: 700px;
+    }
+
+    /* Stories */
+    .stories {
+      display: flex;
+      gap: 20px;
+      overflow-x: auto;
+      padding: 20px 0;
+      border-bottom: 1px solid #222;
+      margin-bottom: 20px;
+    }
+
+    .story {
+      text-align: center;
+      min-width: 80px;
+    }
+
+    .story img {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      padding: 3px;
+      background: linear-gradient(45deg, orange, pink, purple);
+      object-fit: cover;
+    }
+
+    .story p {
+      margin-top: 8px;
+      font-size: 13px;
+    }
+
+    /* Post */
+    .post {
+      margin-bottom: 40px;
+      border-bottom: 1px solid #222;
+      padding-bottom: 20px;
+    }
+
+    .post-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 15px;
+    }
+
+    .user {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .user img {
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .post-image {
+      position: relative;
+      width: 100%;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .post-image img {
+      cursor: pointer;
+      width: 100%;
+      height: 700px;
+      object-fit: cover;
+    }
+
+    .actions {
+      display: flex;
+      justify-content: space-between;
+      font-size: 28px;
+      margin: 15px 0;
+    }
+
+    .left-actions {
+      display: flex;
+      gap: 18px;
+    }
+
+    .likes {
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+
+    .caption span {
+      font-weight: bold;
+      margin-right: 8px;
+    }
+
+    /* Right Side */
+    .right-panel {
+      width: 320px;
+      padding-top: 20px;
+    }
+
+    .profile-box {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 35px;
+    }
+
+    .profile-box img {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+    }
+
+    .suggestions h3 {
+      color: gray;
+      margin-bottom: 20px;
+    }
+
+    .suggestion {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .suggestion-user {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .suggestion-user img {
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+    }
+
+    .follow {
+      color: #0095f6;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+        /* Like Animation */
+    .heart-animation {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0);
+      font-size: 110px;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .heart-animation.active {
+      animation: popHeart 0.9s ease forwards;
+    }
+
+    @keyframes popHeart {
+      0% {
+        transform: translate(-50%, -50%) scale(0.3);
+        opacity: 0;
+      }
+
+      40% {
+        transform: translate(-50%, -50%) scale(1.2);
+        opacity: 1;
+      }
+
+      70% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+      }
+
+      100% {
+        transform: translate(-50%, -50%) scale(1.4);
+        opacity: 0;
+      }
+    }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar {
+      height: 6px;
+      width: 6px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #333;
+      border-radius: 20px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <div class="logo">Instagram</div>
+
+      <div class="menu">
+        <a href="#">🏠 Home</a>
+        <a href="#">🔍 Search</a>
+        <a href="#">🎬 Reels</a>
+        <a href="#">✉️ Messages</a>
+        <a href="#">❤️ Notifications</a>
+        <a href="#">➕ Create</a>
+        <a href="#">👤 Profile</a>
+      </div>
+    </div>
+
+    <!-- Feed -->
+    <div class="feed">
+
+      <!-- Stories -->
+      <div class="stories">
+        <div class="story">
+          <img src="https://i.pravatar.cc/150?img=1">
+          <p>Essa</p>
+        </div>
+
+        <div class="story">
+          <img src="https://i.pravatar.cc/150?img=2">
+          <p>Arun</p>
+        </div>
+
+        <div class="story">
+          <img src="https://i.pravatar.cc/150?img=3">
+          <p>Studio</p>
+        </div>
+
+        <div class="story">
+          <img src="https://i.pravatar.cc/150?img=4">
+          <p>Travel</p>
+        </div>
+
+        <div class="story">
+          <img src="https://i.pravatar.cc/150?img=5">
+          <p>Dark</p>
+        </div>
+      </div>
+
+      <!-- Post -->
+      <div class="post">
+
+        <div class="post-header">
+          <div class="user">
+            <img src="https://i.pravatar.cc/150?img=10">
+            <h4>essa_photography</h4>
+          </div>
+
+          <h2>⋯</h2>
+        </div>
+
+        <div class="post-image like-container">
+          <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1200&auto=format&fit=crop">
+
+          <div class="heart-animation">❤️</div>
+        </div>
+
+        <div class="actions">
+          <div class="left-actions">
+            <span>❤️</span>
+            <span>💬</span>
+            <span>📤</span>
+          </div>
+
+          <span>🔖</span>
+        </div>
+
+        <div class="likes">12,542 likes</div>
+
+        <div class="caption">
+          <span>essa_photography</span>
+          Golden hour cinematic vibes 🌅
+        </div>
+      </div>
+
+      <!-- Second Post -->
+      <div class="post">
+
+        <div class="post-header">
+          <div class="user">
+            <img src="https://i.pravatar.cc/150?img=20">
+            <h4>dark_frames</h4>
+          </div>
+
+          <h2>⋯</h2>
+        </div>
+
+        <div class="post-image like-container">
+          <img src="https://images.unsplash.com/photo-1493246507139-91e8fad9978e?q=80&w=1200&auto=format&fit=crop">
+
+          <div class="heart-animation">❤️</div>
+        </div>
+
+        <div class="actions">
+          <div class="left-actions">
+            <span>❤️</span>
+            <span>💬</span>
+            <span>📤</span>
+          </div>
+
+          <span>🔖</span>
+        </div>
+
+        <div class="likes">9,841 likes</div>
+
+        <div class="caption">
+          <span>dark_frames</span>
+          Moody aesthetic photography 🎬
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Right Panel -->
+    <div class="right-panel">
+
+      <div class="profile-box">
+        <img src="https://i.pravatar.cc/150?img=12">
+
+        <div>
+          <h4>essa_photography</h4>
+          <p style="color: gray;">Creative Designer</p>
+        </div>
+      </div>
+
+      <div class="suggestions">
+        <h3>Suggested for you</h3>
+
+        <div class="suggestion">
+          <div class="suggestion-user">
+            <img src="https://i.pravatar.cc/150?img=30">
+            <p>visual_artist</p>
+          </div>
+
+          <span class="follow">Follow</span>
+        </div>
+
+        <div class="suggestion">
+          <div class="suggestion-user">
+            <img src="https://i.pravatar.cc/150?img=31">
+            <p>cinema_world</p>
+          </div>
+
+          <span class="follow">Follow</span>
+        </div>
+
+        <div class="suggestion">
+          <div class="suggestion-user">
+            <img src="https://i.pravatar.cc/150?img=32">
+            <p>night_mood</p>
+          </div>
+
+          <span class="follow">Follow</span>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <script>
+    const posts = document.querySelectorAll('.like-container');
+
+    posts.forEach((post) => {
+      const heart = post.querySelector('.heart-animation');
+
+      post.addEventListener('dblclick', () => {
+        heart.classList.remove('active');
+
+        setTimeout(() => {
+          heart.classList.add('active');
+        }, 10);
+      });
+    });
+  </script>
+
+</body>
+</html>
